@@ -1,45 +1,46 @@
-mkdir aerosmith_db_project
-cd aerosmith_db_project
+# make directory
+mkdir aerosmith_db_project</br>
+cd aerosmith_db_project</br></br>
 
 # Create React frontend
 npm create vite@latest client -- --template react
 
 # Create backend
-mkdir server
-cd server
-npm init -y
+mkdir server</br>
+cd server</br>
+npm init -y</br>
 npm install @supabase/supabase-js
 
 # Install backend dependencies
-npm install express cors dotenv
+npm install express cors dotenv</br>
 npm install -D nodemon
 
 # Install frontend dependencies
-cd ../client
-npm install
+cd ../client</br>
+npm install</br>
 npm i react-router-dom
 
-
-aerosmith_db_project/
-│
-├── client/                      
-│   ├── public/
-│   └── src/
-│       ├── assets/
-│       ├── components/
-│       │   ├── Navbar.jsx
-│       │   ├── MainPage.jsx
-│       ├── services/
-│       │   └── api.js
-│       ├── App.jsx
-│       └── main.jsx
-│
-├── server/                         
-│   ├── config/
-│   │   └── database.js
-│   │
-│   ├── models/                     
-│   │   └── musicModel.js
+# Project Directory
+aerosmith_db_project/</br>
+│</br>
+├── client/   </br>                   
+│   ├── public/</br>
+│   └── src/</br>
+│       ├── assets/</br>
+│       ├── components/</br>
+│       │   ├── Navbar.jsx</br>
+│       │   ├── MainPage.jsx</br>
+│       ├── services/</br>
+│       │   └── api.js</br>
+│       ├── App.jsx</br>
+│       └── main.jsx</br>
+│</br>
+├── server/</br>                         
+│   ├── config/</br>
+│   │   └── database.js</br>
+│   │</br>
+│   ├── models/</br>                     
+│   │   └── musicModel.js</br>
 │   │
 │   ├── controllers/               
 │   │   └── musicController.js
