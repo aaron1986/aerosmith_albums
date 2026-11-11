@@ -58,3 +58,7 @@ aerosmith_db_project/
 │
 └── .gitignore                      # Files excluded from Git
 </pre>
+
+
+</br></br>
+![Wireframe Image](./src/assets/wireframes_aerosmith.png)
