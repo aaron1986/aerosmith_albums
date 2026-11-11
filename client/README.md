@@ -37,19 +37,19 @@ aerosmith_db_project/</br>
 │
 ├── server/                         
 │   ├── config/</br>
-│   │   └── database.js</br>
-│   │</br>
+│   │   └── database.js
+│   │
 │   ├── models/</br>                     
 │   │   └── musicModel.js</br>
 │   │
-│   ├── controllers/               
+│   ├── controllers/  </br>             
 │   │   └── musicController.js
 │   │
-│   ├── views/                    
+│   ├── views/     </br>               
 │   │   └── musicViews.js
 │   │
-│   ├── .env
-│   ├── server.js
+│   ├── .env</br>
+│   ├── server.js</br>
 │   └── package.json
 │
 └── .gitignore
