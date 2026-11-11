@@ -21,17 +21,19 @@ npm install</br>
 npm i react-router-dom
 
 # Project Directory
+<pre>
 aerosmith_db_project/
 │
 ├── client/                         # React frontend (View)
 │   ├── public/
 │   └── src/
-│       ├── assets/                 # Images and other static assets
+│       ├── assets/                 # Images and static assets
+│       │
 │       ├── components/             # Reusable React components
 │       │   ├── Navbar.jsx
 │       │   └── MainPage.jsx
 │       │
-│       ├── services/               # API requests to Express backend
+│       ├── services/               # API requests
 │       │   └── api.js
 │       │
 │       ├── App.jsx                 # Main React application
@@ -42,12 +44,12 @@ aerosmith_db_project/
 │   │   └── database.js             # Supabase connection
 │   │
 │   ├── models/                     # Model layer
-│   │   └── musicModel.js           # Supabase database queries
+│   │   └── musicModel.js           # Database queries
 │   │
 │   ├── controllers/                # Controller layer
 │   │   └── musicController.js      # Handles API requests
 │   │
-│   ├── views/                      # View-related server logic
+│   ├── views/                      # View-related logic
 │   │   └── musicViews.js
 │   │
 │   ├── .env                        # Environment variables
@@ -55,3 +57,4 @@ aerosmith_db_project/
 │   └── package.json                # Backend dependencies
 │
 └── .gitignore                      # Files excluded from Git
+</pre>
