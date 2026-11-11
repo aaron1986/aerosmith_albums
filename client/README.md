@@ -20,7 +20,7 @@ cd ../client</br>
 npm install</br>
 npm i react-router-dom
 
-# Project Directory
+# Project directory
 <pre>
 aerosmith_db_project/
 │
