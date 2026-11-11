@@ -1,6 +1,6 @@
 # Make directory
 mkdir aerosmith_db_project</br>
-cd aerosmith_db_project</br></br>
+cd aerosmith_db_project
 
 # Create React frontend
 npm create vite@latest client -- --template react
