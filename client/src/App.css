@@ -95,6 +95,27 @@ width: 100%;
     color: #555;
 }
 
+.album-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.album-details-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.album-details-image {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 900px) {
     .img-container {
         grid-template-columns: repeat(2, 1fr);
