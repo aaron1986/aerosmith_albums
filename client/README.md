@@ -1,4 +1,4 @@
-# make directory
+# Make directory
 mkdir aerosmith_db_project</br>
 cd aerosmith_db_project</br></br>
 
@@ -22,8 +22,8 @@ npm i react-router-dom
 
 # Project Directory
 aerosmith_db_project/</br>
-│</br>
-├── client/   </br>                   
+│
+├── client/                 
 │   ├── public/</br>
 │   └── src/</br>
 │       ├── assets/</br>
@@ -34,8 +34,8 @@ aerosmith_db_project/</br>
 │       │   └── api.js</br>
 │       ├── App.jsx</br>
 │       └── main.jsx</br>
-│</br>
-├── server/</br>                         
+│
+├── server/                         
 │   ├── config/</br>
 │   │   └── database.js</br>
 │   │</br>
