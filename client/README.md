@@ -21,35 +21,37 @@ npm install</br>
 npm i react-router-dom
 
 # Project Directory
-aerosmith_db_project/</br>
+aerosmith_db_project/
 │
-├── client/                 
-│   ├── public/</br>
-│   └── src/</br>
-│       ├── assets/</br>
-│       ├── components/</br>
-│       │   ├── Navbar.jsx</br>
-│       │   ├── MainPage.jsx</br>
-│       ├── services/</br>
-│       │   └── api.js</br>
-│       ├── App.jsx</br>
-│       └── main.jsx</br>
+├── client/                         # React frontend (View)
+│   ├── public/
+│   └── src/
+│       ├── assets/                 # Images and other static assets
+│       ├── components/             # Reusable React components
+│       │   ├── Navbar.jsx
+│       │   └── MainPage.jsx
+│       │
+│       ├── services/               # API requests to Express backend
+│       │   └── api.js
+│       │
+│       ├── App.jsx                 # Main React application
+│       └── main.jsx                # React entry point
 │
-├── server/                         
-│   ├── config/</br>
-│   │   └── database.js
+├── server/                         # Express backend (MVC)
+│   ├── config/                     # Database configuration
+│   │   └── database.js             # Supabase connection
 │   │
-│   ├── models/                    
-│   │   └── musicModel.js</br>
+│   ├── models/                     # Model layer
+│   │   └── musicModel.js           # Supabase database queries
 │   │
-│   ├── controllers/            
-│   │   └── musicController.js
+│   ├── controllers/                # Controller layer
+│   │   └── musicController.js      # Handles API requests
 │   │
-│   ├── views/              
+│   ├── views/                      # View-related server logic
 │   │   └── musicViews.js
 │   │
-│   ├── .env</br>
-│   ├── server.js</br>
-│   └── package.json</br>
+│   ├── .env                        # Environment variables
+│   ├── server.js                   # Express server entry point
+│   └── package.json                # Backend dependencies
 │
-└── .gitignore
+└── .gitignore                      # Files excluded from Git
