@@ -10,10 +10,6 @@ export default function AlbumDetails() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    // YouTube recording
-    const youtubeLink =
-        'https://www.youtube.com/embed/8W79PjWNC4Y?list=PLj4ufAHTM-E2nAHg_tuSyzFaDAifHrFNW'
-
     useEffect(() => {
 
         const fetchAlbum = async () => {
@@ -84,28 +80,51 @@ export default function AlbumDetails() {
                 <p>
                     <strong>Release Year:</strong> {album.year_released}
                 </p>
-
                 <p>
-                    <strong>Release Type:</strong> {album.release_type}
+                    <strong>Record Label:</strong> {album.record_label}
+                </p>
+                   <p>
+                    <strong>Billboard Chart Position:</strong> {album.us_chart_position}
+                </p>
+                   <p>
+                    <strong>Billboard Certification:</strong> {album.us_certification}
+                </p>
+                                   <p>
+                    <strong>Number of Tracks:</strong> {album.tracks}
+                </p>
+                                   <p>
+                    <strong>Album Duration:</strong> {album.duration}
                 </p>
 
-                 {/* YouTube Audio Player */}
+<div className="album-audio">
 
-            <div className="album-audio">
+    <h2>Listen to Album</h2>
 
-                <h2>Listen to Recording</h2>
+    {album.audio_url ? (
 
-                <iframe
-                    width="100%"
-                    height="180"
-                    src={youtubeLink}
-                    title={`${album.title} - YouTube recording`}
-                    frameBorder="0"
-                    allow="encrypted-media; picture-in-picture"
-                    allowFullScreen
-                />
+        <audio
+            controls
+            preload="metadata"
+            className="audio-player"
+        >
+            <source
+                src={album.audio_url}
+                type="audio/mpeg"
+            />
 
-                </div>
+            Your browser does not support audio playback.
+
+        </audio>
+
+    ) : (
+
+        <p>Audio currently unavailable.</p>
+
+    )}
+
+</div>
+
+        
 
             </div>
 
