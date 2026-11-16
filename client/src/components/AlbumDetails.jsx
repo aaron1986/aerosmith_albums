@@ -10,6 +10,10 @@ export default function AlbumDetails() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    // YouTube recording
+    const youtubeLink =
+        'https://www.youtube.com/embed/8W79PjWNC4Y?list=PLj4ufAHTM-E2nAHg_tuSyzFaDAifHrFNW'
+
     useEffect(() => {
 
         const fetchAlbum = async () => {
@@ -61,7 +65,6 @@ export default function AlbumDetails() {
         return <p>Error: {error}</p>
     }
 
-
     return (
 
         <div className="album-details">
@@ -86,9 +89,29 @@ export default function AlbumDetails() {
                     <strong>Release Type:</strong> {album.release_type}
                 </p>
 
+                 {/* YouTube Audio Player */}
+
+            <div className="album-audio">
+
+                <h2>Listen to Recording</h2>
+
+                <iframe
+                    width="100%"
+                    height="180"
+                    src={youtubeLink}
+                    title={`${album.title} - YouTube recording`}
+                    frameBorder="0"
+                    allow="encrypted-media; picture-in-picture"
+                    allowFullScreen
+                />
+
+                </div>
+
             </div>
 
         </div>
+
+      
 
     )
 }

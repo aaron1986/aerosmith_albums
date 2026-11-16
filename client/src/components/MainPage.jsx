@@ -1,7 +1,9 @@
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export default function MainPage() {
+
     const [music, setMusic] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,6 +13,9 @@ export default function MainPage() {
         const fetchMusic = async () => {
 
             try {
+
+                setLoading(true);
+                setError(null);
 
                 const response = await fetch(
                     'http://localhost:5000/api/music'
@@ -42,62 +47,72 @@ export default function MainPage() {
 
     return (
 
-<>
-    <div className="article_title">
-        Aerosmith Collection
-    </div>
+        <>
 
-    <div className="about-container">
+            <div className="article_title">
+                Aerosmith Collection
+            </div>
 
-        {loading && <p>Loading music...</p>}
+            <div className="about-container">
 
-        {error && <p>Error: {error}</p>}
+                {loading && <p>Loading music...</p>}
 
-        {!loading && !error && (
+                {error && <p>Error: {error}</p>}
 
-            <div className="img-container">
+                {!loading && !error && (
 
-                {music.length === 0 ? (
+                    <div className="img-container">
 
-                    <p>No music records found.</p>
+                        {music.length === 0 ? (
 
-                ) : (
+                            <p>No music records found.</p>
 
-                    music.map((item) => (
+                        ) : (
 
-                        <div className="album_page" key={item.id}>
+                            music.map((item) => (
 
-                            <h2>{item.title}</h2>
+                                <div
+                                    className="album_page"
+                                    key={item.id}
+                                >
 
-                            {item.cover_img && (
-                                <Link to={`/album/${item.id}`}>
-                                    <img
-                                        src={item.cover_img}
-                                        alt={item.title}
-                                        className="card_image"
-                                        onError={(e) => {
-                                            e.target.style.display = 'none';
-                                        }}
-                                    />
-                                </Link>
-                            )}
+                                    <h2>{item.title}</h2>
 
-                            <p className="album_page_description">
-                                Released in {item.year_released}
-                            </p>
+                                    {item.cover_img && (
 
-                        </div>
+                                        <Link to={`/album/${item.id}`}>
 
-                    ))
+                                            <img
+                                                src={item.cover_img}
+                                                alt={item.title}
+                                                className="card_image"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                            />
+
+                                        </Link>
+
+                                    )}
+
+                                    <p className="album_page_description">
+                                        Released in {item.year_released}
+                                    </p>
+
+                                </div>
+
+                            ))
+
+                        )}
+
+                    </div>
 
                 )}
 
             </div>
 
-        )}
+        </>
 
-    </div>
-</>
+    );
 
-    )
 }
