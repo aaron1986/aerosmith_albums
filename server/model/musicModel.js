@@ -1,8 +1,7 @@
 
-const supabase = require('../config/supabase');
+const supabase = require('../config/database');
 
 const getAllMusic = async () => {
-
     const { data, error } = await supabase
         .from('studio_albums')
         .select('*')
@@ -16,5 +15,5 @@ const getAllMusic = async () => {
 };
 
 module.exports = {
-    getAllMusic,
+    getAllMusic
 };

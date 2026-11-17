@@ -1,9 +1,10 @@
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
-const artistRoutes = require('./views/musicViews');
+const musicRoutes = require('./views/musicViews');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,17 +12,24 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Homepage route
+// API routes
+app.use('/api', musicRoutes);
+
+// Homepage
 app.get('/', (req, res) => {
-    res.send(`
-        <h1>Aerosmith Albums API</h1>
-        <p>Server is running successfully!</p>
-        <p>Visit /api to access the API.</p>
-    `);
+    res.send('Aerosmith Albums API is running!');
 });
 
-// API routes
-app.use('/api', artistRoutes);
+// React frontend (production)
+app.use(express.static(
+    path.join(__dirname, '../client/dist')
+));
+
+app.get('*', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, '../client/dist/index.html')
+    );
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
