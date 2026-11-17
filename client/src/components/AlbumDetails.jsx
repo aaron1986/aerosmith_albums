@@ -1,140 +1,161 @@
 
-import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getAllMusic } from '../services/api';
 
 export default function AlbumDetails() {
 
-    const { id } = useParams()
+    const { id } = useParams();
 
-    const [album, setAlbum] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [album, setAlbum] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
 
         const fetchAlbum = async () => {
 
             try {
-                setLoading(true)
-                setError(null)
+                setLoading(true);
+                setError(null);
 
-                const response = await fetch(
-                    'http://localhost:5000/api/music'
-                )
+                const data = await getAllMusic();
 
-                if (!response.ok) {
-                    throw new Error('Unable to retrieve albums')
-                }
-
-                const data = await response.json()
                 const selectedAlbum = data.find(
-                    item => String(item.id) === id
-                )
+                    item => String(item.id) === String(id)
+                );
 
                 if (!selectedAlbum) {
-                    throw new Error('Album not found')
+                    throw new Error('Album not found');
                 }
 
-                setAlbum(selectedAlbum)
+                setAlbum(selectedAlbum);
 
             } catch (err) {
 
-                setError(err.message)
+                setError(err.message);
 
             } finally {
 
-                setLoading(false)
+                setLoading(false);
 
             }
-        }
+        };
 
-        fetchAlbum()
+        fetchAlbum();
 
-    }, [id])
-
+    }, [id]);
 
     if (loading) {
-        return <p>Loading album details...</p>
+        return <p>Loading album details...</p>;
     }
 
     if (error) {
-        return <p>Error: {error}</p>
+        return (
+            <div className="album-details">
+                <h2>Unable to load album</h2>
+                <p>Error: {error}</p>
+                <Link to="/">Back to albums</Link>
+            </div>
+        );
+    }
+
+    if (!album) {
+        return <p>Album not found.</p>;
     }
 
     return (
 
-      <div className="album-details">
+        <div className="album-details">
 
-    <h1 className="album-details-title">
-        Album Details
-    </h1>
+            <h1 className="album-details-title">
+                Album Details
+            </h1>
 
-    <div className="album-main">
+            <div className="album-main">
 
-        <img
-            src={album.cover_img}
-            alt={album.title}
-            className="album-details-image"
-        />
+                <img
+                    src={album.cover_img}
+                    alt={album.title}
+                    className="album-details-image"
+                    onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                    }}
+                />
 
-        <div className="album-information">
+                <div className="album-information">
 
-            <p>
-                <strong>Billboard Chart Position:</strong>
-                {album.us_chart_position}
-            </p>
+                    <p>
+                        <strong>Album Information:</strong>
+                        {' '}{album.title}
+                    </p>
 
-            <p>
-                <strong>Album Information:</strong>
-                {album.title}
-            </p>
+                    <p>
+                        <strong>Release Year:</strong>
+                        {' '}{album.year_released ?? 'Unknown'}
+                    </p>
 
-            <p>
-                <strong>Certification:</strong>
-                {album.us_certification}
-            </p>
+                    <p>
+                        <strong>Billboard Chart Position:</strong>
+                        {' '}{album.us_chart_position ?? 'Unknown'}
+                    </p>
 
-            <p>
-                <strong>Record Label:</strong>
-                {album.record_label}
-            </p>
+                    <p>
+                        <strong>Certification:</strong>
+                        {' '}{album.us_certification ?? 'Unknown'}
+                    </p>
 
-            <p>
-                <strong> Number of Tracks:</strong>
-                {album.tracks}
-            </p>
+                    <p>
+                        <strong>Record Label:</strong>
+                        {' '}{album.record_label ?? 'Unknown'}
+                    </p>
+
+                    <p>
+                        <strong>Number of Tracks:</strong>
+                        {' '}{album.tracks ?? 'Unknown'}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div className="album-audio">
+
+                <h2>Listen to the Album</h2>
+
+                {album.audio_url ? (
+
+                    <audio
+                        controls
+                        preload="metadata"
+                        className="audio-player"
+                    >
+                        <source
+                            src={album.audio_url}
+                            type="audio/mpeg"
+                        />
+
+                        Your browser does not support audio playback.
+
+                    </audio>
+
+                ) : (
+
+                    <p>Audio currently unavailable.</p>
+
+                )}
+
+            </div>
+
+            <div className="album-back">
+
+                <Link to="/">
+                    ← Back to Aerosmith Collection
+                </Link>
+
+            </div>
 
         </div>
 
-    </div>
-
-    <div className="album-audio">
-
-        {album.audio_url ? (
-
-            <audio
-                controls
-                preload="metadata"
-                className="audio-player"
-            >
-                <source
-                    src={album.audio_url}
-                    type="audio/mpeg"
-                />
-                Your browser does not support audio playback.
-            </audio>
-
-        ) : (
-
-            <p>Audio currently unavailable.</p>
-
-        )}
-
-    </div>
-
-</div>
-
-      
-
-    )
+    );
 }
