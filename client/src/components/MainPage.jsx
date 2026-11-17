@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getAllMusic } from '../services/api';
 
 export default function MainPage() {
 
@@ -13,19 +14,10 @@ export default function MainPage() {
         const fetchMusic = async () => {
 
             try {
-
                 setLoading(true);
                 setError(null);
 
-                const response = await fetch(
-                    'http://localhost:5000/api/music'
-                );
-
-                if (!response.ok) {
-                    throw new Error('Unable to retrieve music data');
-                }
-
-                const result = await response.json();
+                const result = await getAllMusic();
 
                 setMusic(result);
 
@@ -38,7 +30,6 @@ export default function MainPage() {
                 setLoading(false);
 
             }
-
         };
 
         fetchMusic();
@@ -46,9 +37,7 @@ export default function MainPage() {
     }, []);
 
     return (
-
         <>
-
             <div className="article_title">
                 Aerosmith Collection
             </div>
@@ -110,9 +99,6 @@ export default function MainPage() {
                 )}
 
             </div>
-
         </>
-
     );
-
 }
