@@ -147,13 +147,6 @@ export default function AlbumDetails() {
 
             </div>
 
-            <div className="album-back">
-
-                <Link to="/">
-                    ← Back to Aerosmith Collection
-                </Link>
-
-            </div>
 
         </div>
 
