@@ -63,72 +63,76 @@ export default function AlbumDetails() {
 
     return (
 
-        <div className="album-details">
+      <div className="album-details">
 
-            <h1 className="album-details-title">
+    <h1 className="album-details-title">
+        Album Details
+    </h1>
+
+    <div className="album-main">
+
+        <img
+            src={album.cover_img}
+            alt={album.title}
+            className="album-details-image"
+        />
+
+        <div className="album-information">
+
+            <p>
+                <strong>Billboard Chart Position:</strong>
+                {album.us_chart_position}
+            </p>
+
+            <p>
+                <strong>Album Information:</strong>
                 {album.title}
-            </h1>
+            </p>
 
-            <img
-                src={album.cover_img}
-                alt={album.title}
-                className="album-details-image"
-            />
+            <p>
+                <strong>Certification:</strong>
+                {album.us_certification}
+            </p>
 
-            <div className="album-information">
+            <p>
+                <strong>Record Label:</strong>
+                {album.record_label}
+            </p>
 
-                <p>
-                    <strong>Release Year:</strong> {album.year_released}
-                </p>
-                <p>
-                    <strong>Record Label:</strong> {album.record_label}
-                </p>
-                   <p>
-                    <strong>Billboard Chart Position:</strong> {album.us_chart_position}
-                </p>
-                   <p>
-                    <strong>Billboard Certification:</strong> {album.us_certification}
-                </p>
-                                   <p>
-                    <strong>Number of Tracks:</strong> {album.tracks}
-                </p>
-                                   <p>
-                    <strong>Album Duration:</strong> {album.duration}
-                </p>
-
-<div className="album-audio">
-
-    <h2>Listen to Album</h2>
-
-    {album.audio_url ? (
-
-        <audio
-            controls
-            preload="metadata"
-            className="audio-player"
-        >
-            <source
-                src={album.audio_url}
-                type="audio/mpeg"
-            />
-
-            Your browser does not support audio playback.
-
-        </audio>
-
-    ) : (
-
-        <p>Audio currently unavailable.</p>
-
-    )}
-
-</div>
-
-        
-
-            </div>
+            <p>
+                <strong> Number of Tracks:</strong>
+                {album.tracks}
+            </p>
 
         </div>
+
+    </div>
+
+    <div className="album-audio">
+
+        {album.audio_url ? (
+
+            <audio
+                controls
+                preload="metadata"
+                className="audio-player"
+            >
+                <source
+                    src={album.audio_url}
+                    type="audio/mpeg"
+                />
+                Your browser does not support audio playback.
+            </audio>
+
+        ) : (
+
+            <p>Audio currently unavailable.</p>
+
+        )}
+
+    </div>
+
+</div>
 
       
 
